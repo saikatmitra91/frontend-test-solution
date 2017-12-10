@@ -1,4 +1,9 @@
 import React, {Component} from 'react'
+import CardImage from './../card-image'
+import CardHeading from './../card-heading'
+import CardAddress from './../card-address'
+import CardPrice from './../card-price'
+import CardMoreDetails from './../card-more-details'
 
 class Card extends Component {
 
@@ -17,23 +22,15 @@ class Card extends Component {
         const { numberOfRooms, space } = realestateSummary
         return (
             <div className="hC">
-                <div className="hC-imgContainer">
-                    <div className="hC-image"><img src={inventory_m.url}/></div>
-                    <div className="hC-tab"><span>{ city }</span></div>
-                </div>
+                <CardImage url={inventory_m.url} city={city} />
                 <div className="hC-content">
                     <div className="hC-title">
-                        <h4 className="heading-det">{ title }</h4>
-                        <p className="hC-details"><strong>{ fullAddress }</strong></p>
+                        <CardHeading title={title} />
+                        <CardAddress address={fullAddress}/>
                     </div>
                     <div className="hC-info">
-                        <div className="hC-price">
-                            <p><strong>{ sellPrice } €</strong></p>
-                        </div>
-                        <div className="hC-price">
-                            <p className="hC-p-l">{ numberOfRooms } Zimmer</p>
-                            <p className="hC-p-r">{ space }<sup>2</sup></p>
-                        </div>
+                        <CardPrice price={sellPrice} />
+                        <CardMoreDetails rooms={numberOfRooms} space={space}/>
                     </div>
                 </div>
             </div>
