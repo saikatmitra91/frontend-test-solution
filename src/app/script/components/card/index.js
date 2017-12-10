@@ -8,7 +8,6 @@ class Card extends Component {
         const { realestateSummary = {} } = adData
         const { advertisementPrice = {} } = adData
         const { advertisementAssets = [] } = adData
-        const { realestateSummary} = adData
         const { address = {} } = realestateSummary
         const { city = ''} = address
         const { fullAddress = '' } = address
