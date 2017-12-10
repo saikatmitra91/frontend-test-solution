@@ -11,35 +11,14 @@ const AUTOPREFIXER_BROWSERS = [
   'Safari >= 7.1'
 ]
 module.exports = {
-  entry: ['babel-regenerator-runtime', './src/app/script/app.js'],
+  entry: ['./src/app/script/app.js'],
+  target: 'web',
   output: {
     filename: './bundle.js',
     path: path.join(__dirname, 'dist'),
   },
-  resolve: {
-    alias: {
-      vue: 'vue/dist/vue.js'
-    }
-  },
-  devServer: {
-    proxy: {
-      '/api/*': {
-        target: 'https://api.mcmakler.de/v1',
-        secure: false,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      }
-    }
-  },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
       {
         test: /\.css$/,
         use: ['style-loader'],
@@ -60,6 +39,14 @@ module.exports = {
           'sass-loader'
         ]
       },
+      {
+        test: /.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react']
+        }
+      }
     ],
   },
   plugins: [
